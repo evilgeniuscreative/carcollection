@@ -1,0 +1,21 @@
+body {
+  margin: 20px 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cars-list {
+  display: flex;
+  list-style-type: none;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.car {
+  flex-basis: 25%;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.car-image {
+  width: 100%;
+}

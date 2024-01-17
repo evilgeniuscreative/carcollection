@@ -2,10 +2,10 @@
 {% extends 'carsapp/base.html' %} {% block content %}
 
 <h2>Cars List</h2>
-<ul>
+<ul class="cars-list">
   {% for car in cars %}
-  <li>
-    <a href="{% url 'car_detail' pk=car.pk %}">Click for details</br>{{ car.photo_url }}</a>
+  <li class="car">
+    <a href="{% url 'car_detail' pk=car.pk %}"><img class="car-image" src="{{ car.photo_url }}" alt="Click for detail" /></a>
     <p>{{ car.name}} | {{ car.year }} {{ car.make }} {{ car.model }}</p>
   </li>
   {% endfor %}
