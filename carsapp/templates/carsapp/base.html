@@ -1,0 +1,12 @@
+<!-- carsapp/templates/carsapp/base.html -->
+{% load static%}
+<html>
+  <head>
+    <title>Cars Collection</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>Cars Collection</h1>
+    {% block content %} {% endblock %}
+  </body>
+</html>

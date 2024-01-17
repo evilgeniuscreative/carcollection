@@ -1,0 +1,13 @@
+<!-- carsapp/templates/carsapp/car_list.html -->
+{% extends 'carsapp/base.html' %} {% block content %}
+
+<h2>Cars List</h2>
+<ul>
+  {% for car in cars %}
+  <li>
+    <a href="{% url 'car_detail' pk=car.pk %}">Click for details</br>{{ car.photo_url }}</a>
+    <p>{{ car.name}} | {{ car.year }} {{ car.make }} {{ car.model }}</p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

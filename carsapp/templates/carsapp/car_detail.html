@@ -1,0 +1,17 @@
+<!-- carsapp/templates/carsapp/car_detail.html -->
+{% extends 'tunr/base.html' %} {% block content %}
+
+<h2>{{ car.name }} <a href="">(edit)</a></h2>
+<h4>{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}</h4>
+
+<img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
+
+<h3>Comments <a href="">(+)</a></h3>
+<ol>
+  {% for comment in car.comments.all %}
+  <li>
+    <a href="">{{ comment.comment }}</a>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}
