@@ -31,6 +31,7 @@ h2 {
 h1 {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
+  margin: 0 auto;
 }
 
 h2 {
@@ -99,6 +100,7 @@ nav a:hover {
   height: 250px;
   width: auto;
   background-size: cover;
+  background-position: center center;
 }
 
 .car-image {
