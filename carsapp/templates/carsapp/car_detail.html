@@ -1,17 +1,18 @@
 <!-- carsapp/templates/carsapp/car_detail.html -->
 {% extends 'carsapp/base.html' %} {% block content %}
-<a class="back" href="/">< Car Listings</a>
+<h2>&ldquo;{{ car.name }}&rdquo;</h2>
 <main class="detail-page">
-  <h2>{{ car.name }}</h2>
-  <h4>{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
+  <h4 class="car-detail-desc detail-desc-bg">{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
 
-  <img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
+  <figure class="car-detail">
+    <img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
+  </figure>
 
-  <article>
-    <p>{{car.description}}</p>
+  <article class="detail-desc-bg">
+    <p class="car-detail-desc">{{car.description}}</p>
   </article>
 
-  <section>
+  <section class="comments">
     <div class="comments-header">
       <h4 class="comments-title">Comments</h4>
       <a href="" class="comments-add">+ add comment</a>

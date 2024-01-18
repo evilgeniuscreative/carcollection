@@ -1,29 +1,88 @@
 body {
   margin: 20px 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background: url('https://evilgeniuscreative.com/theroad.webp');
+  background-size: cover;
 }
 
-.back {
-  position: absolute;
-  top: 40px;
-  left: 100px;
-  text-decoration: none;
-  color: black;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
+@keyframes fadeBlue {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #bddbef;
+  }
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h1 {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+h2 {
+  background-color: #89b6d3;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-bottom: 40px;
+  padding: 10px;
+  text-align: center;
+}
+
+nav {
+  background-color: #bddbef;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 15px;
+}
+
+nav a {
+  color: black;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: rgb(0, 0, 238);
+}
+
 .page-title {
   text-align: center;
   padding: 15px 0;
   background-color: #edf4ff;
 }
+
 .cars-list {
+  animation-name: fadeIn;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  opacity: 1;
   display: flex;
+  justify-content: space-around;
   list-style-type: none;
   gap: 40px;
   flex-wrap: wrap;
 }
 
 .car {
-  background: #edf4ff;
+  animation-name: fadeBlue;
+  animation-duration: 6s;
+  animation-iteration-count: 1;
+  background-color: #edf4ff;
   border: 1px solid #eee;
   border-radius: 5px;
   flex-basis: 25%;
@@ -35,9 +94,15 @@ body {
   font-size: 13px;
 }
 
-.car-image {
-  max-height: 250px;
+.car-link {
+  display: block;
+  height: 250px;
   width: auto;
+  background-size: cover;
+}
+
+.car-image {
+  max-width: 100%;
 }
 
 .detail-page {
@@ -45,11 +110,35 @@ body {
   width: 768px;
 }
 
-.detail-page img {
+.detail-desc-bg {
+  background-color: white;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 15px;
+  width: 660px;
+}
+
+.car-detail-desc {
+  text-align: center;
+}
+
+.detail-page .car-detail {
   border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.detail-page img {
   border-radius: 5px;
   height: auto;
   max-width: 100%;
+}
+
+.comments {
+  background: white;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 10px 15px;
+  width: 660px;
 }
 
 .comments-header {
@@ -72,4 +161,14 @@ body {
   font-weight: normal;
   padding: 0;
   margin: 0;
+}
+
+.comment {
+  padding: 15px;
+  font-size: 14px;
+  font-style: italic;
+}
+.comment::first-letter {
+  font-size: 16px;
+  font-weight: bold;
 }

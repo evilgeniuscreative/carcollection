@@ -5,7 +5,7 @@
 <ul class="cars-list">
   {% for car in cars %}
   <li class="car">
-    <a href="{% url 'car_detail' pk=car.pk %}"><img class="car-image" src="{{ car.photo_url }}" alt="Click for detail" /></a>
+    <a href="{% url 'car_detail' pk=car.pk %}" class="car-link" style="background-image:url('{{ car.photo_url }}')" title="Click for detail"> </a>
     <p><strong>{{ car.name}}</strong>, {{ car.year }} {{ car.make }} {{ car.model }}</p>
   </li>
   {% endfor %}
