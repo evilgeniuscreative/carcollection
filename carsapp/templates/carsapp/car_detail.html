@@ -1,17 +1,28 @@
 <!-- carsapp/templates/carsapp/car_detail.html -->
-{% extends 'tunr/base.html' %} {% block content %}
+{% extends 'carsapp/base.html' %} {% block content %}
+<a class="back" href="/">< Car Listings</a>
+<main class="detail-page">
+  <h2>{{ car.name }}</h2>
+  <h4>{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
 
-<h2>{{ car.name }} <a href="">(edit)</a></h2>
-<h4>{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}</h4>
+  <img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
 
-<img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
+  <article>
+    <p>{{car.description}}</p>
+  </article>
 
-<h3>Comments <a href="">(+)</a></h3>
-<ol>
-  {% for comment in car.comments.all %}
-  <li>
-    <a href="">{{ comment.comment }}</a>
-  </li>
-  {% endfor %}
-</ol>
-{% endblock %}
+  <section>
+    <div class="comments-header">
+      <h4 class="comments-title">Comments</h4>
+      <a href="" class="comments-add">+ add comment</a>
+    </div>
+    <ol>
+      {% for comment in car.comments.all %}
+      <li>
+        <a href="">{{ comment.comment }}</a>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endblock %}
+</main>

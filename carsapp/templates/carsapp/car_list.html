@@ -6,7 +6,7 @@
   {% for car in cars %}
   <li class="car">
     <a href="{% url 'car_detail' pk=car.pk %}"><img class="car-image" src="{{ car.photo_url }}" alt="Click for detail" /></a>
-    <p>{{ car.name}} | {{ car.year }} {{ car.make }} {{ car.model }}</p>
+    <p><strong>{{ car.name}}</strong>, {{ car.year }} {{ car.make }} {{ car.model }}</p>
   </li>
   {% endfor %}
 </ul>
