@@ -143,10 +143,6 @@ nav a:hover {
   width: 80%;
 }
 
-#comment-form.hidden {
-  display: none;
-}
-
 .comment-form {
   display: flex;
   flex-direction: column;

@@ -18,7 +18,7 @@ class Car(models.Model):
 
 class Comment(models.Model):
     comment = models.CharField(max_length=500)
-    car_id = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car_id')
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='car')
 
     def __str__(self):
         return self.comment
