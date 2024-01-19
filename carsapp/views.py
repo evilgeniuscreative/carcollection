@@ -30,20 +30,22 @@ def car_add(request):
   return render(request, 'carsapp/car_form.html', {'form': form})
 
 
-def get_car_id(request, car_id):
-    car = Car.objects.get(id=car_id)
-    form = CarForm(initial={'car_id': car_id})  # replace 'field' with the actual field name
+def add_car_comment(request, pk):
+    car = Car.objects.get(id=pk)
+    if request.method == 'POST':
+      form = CommentForm(request.POST)
+      if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.car = car
+        new_comment.save()
+        return redirect('car_detail', pk=car.pk)
+    else:
+      form = CommentForm()
     return render(request, 'carsapp/car_detail.html', {'form': form})
 
-def add_car_comment(req, car_id):
-  car = Car.objects.get(id=car_id)
-  if req.method == 'POST':
-    form = CommentForm(req.POST)
-    if form.is_valid():
-      new_comment = form.save(commit=False)
-      new_comment.car = car.id
-      new_comment.save()
-    return redirect('car_detail', pk=car.pk)
-  else:
-    form = CommentForm()
-    return render(req, 'carsapp/comment_form.html', {'form': form})
+
+def car_detail(request, pk):
+  car = Car.objects.get(id=pk)
+  comments = Comment.objects.filter(car=car)
+  form = CommentForm()
+  return render(request, 'carsapp/car_detail.html', {'car': car, 'comments': comments, 'form': form})

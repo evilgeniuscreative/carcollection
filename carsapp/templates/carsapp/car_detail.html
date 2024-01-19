@@ -18,19 +18,18 @@
     </div>
 
     <div id="comment-add">
-      <form method="POST" class="comment-form">
+      <form method="POST" action="{% url 'add_car_comment' pk=car.pk %}" class="comment-form">
         {% csrf_token %}
-        <textarea name="comment-text" class="comment-field" rows="6" placeholder="Add a comment..." class="comment-textarea"></textarea>
-        <button type="submit" class="save btn btn-default comment-btn">Save</button>
+        <textarea name="comment" class="comment-field" rows="6" placeholder="Add a comment..." class="comment-textarea"></textarea>
+        <button type="submit" class="save btn btn-default comment-btn">Add Comment</button>
       </form>
     </div>
-    <ol>
+
+    <ul class="comments-list">
       {% for c in comments.all %}
-      <li>
-        <a href="">{{ c.comment }}</a>
-      </li>
+      <li>{{ c.comment }}</li>
       {% endfor %}
-    </ol>
+    </ul>
   </section>
 
   {% endblock %}
