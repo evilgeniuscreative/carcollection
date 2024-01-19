@@ -221,3 +221,34 @@ nav a:hover {
   font-size: 16px;
   font-weight: bold;
 }
+
+.car-form {
+  margin: 10px auto;
+  width: 300px;
+}
+.car-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+.car-form input,
+.car-form textarea {
+  border-radius: 5px;
+  border: 1px solid #eee;
+  font-size: 16px;
+  padding: 5px;
+  width: 100%;
+}
+
+.big-btn {
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px auto;
+  padding: 8px 25px;
+  width: 300px;
+}
+
+.big-btn:hover {
+  background-color: #bddbef;
+}
