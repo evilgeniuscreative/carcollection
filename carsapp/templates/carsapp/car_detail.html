@@ -1,10 +1,13 @@
 <!-- carsapp/templates/carsapp/car_detail.html -->
 {% extends 'carsapp/base.html' %} {% block content %}
 <h2>&ldquo;{{ car.name }}&rdquo;</h2>
+<p><a href="{% url 'car_edit' pk=car.pk %}">Edit this car</a></p>
+<p><a href="{% url 'car_delete' pk=car.pk %}">Delete this car</a></p>
 <main class="detail-page">
   <h4 class="car-detail-desc detail-desc-bg">{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
 
   <figure class="car-detail">
+    <a href="" class="favorite">Add to your collection</a>
     <img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
   </figure>
 
