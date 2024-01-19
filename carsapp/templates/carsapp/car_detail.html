@@ -15,7 +15,14 @@
   <section class="comments">
     <div class="comments-header">
       <h4 class="comments-title">Comments</h4>
-      <a href="" class="comments-add">+ add comment</a>
+    </div>
+
+    <div id="comment-section" class="hidden">
+      <form method="POST" class="comment-form">
+        {% csrf_token %}
+        <textarea name="comment-text" class="comment-field" rows="6" placeholder="Add a comment..." class="comment-textarea"></textarea>
+        <button type="submit" class="save btn btn-default comment-btn">Save</button>
+      </form>
     </div>
     <ol>
       {% for comment in car.comments.all %}
@@ -25,5 +32,6 @@
       {% endfor %}
     </ol>
   </section>
+
   {% endblock %}
 </main>

@@ -135,6 +135,37 @@ nav a:hover {
   max-width: 100%;
 }
 
+#comment-form {
+  background: white;
+  border-radius: 5px;
+  margin: 20px auto;
+  padding: 10px 15px;
+  width: 80%;
+}
+
+#comment-form.hidden {
+  display: none;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+.comment-btn {
+  padding: 8px 15px;
+  border-radius: 5px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.comment-field {
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
 .comments {
   background: white;
   border-radius: 5px;

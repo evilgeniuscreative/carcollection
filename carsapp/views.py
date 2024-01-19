@@ -38,3 +38,23 @@ def comment_add(request):
       form = CommentForm()
 
   return render(request, 'carsapp/comment_form.html', {'form': form})
+
+def get_car_id(request, car_id):
+    car = Car.objects.get(id=car_id)
+    form = CarForm(initial={'car_id': car_id})  # replace 'field' with the actual field name
+    return render(request, 'carsapp/car_detail.html', {'form': form})
+
+
+
+def add_car_comment(req, car_id):
+  car = Car.objects.get(id=car_id)
+  if req.method == 'POST':
+    form = CommentForm(req.POST)
+    if form.is_valid():
+      new_comment = form.save(commit=False)
+      new_comment.car_id = car_id
+      new_comment.save()
+    return redirect('car_detail', pk=car.pk)
+  else:
+    form = CommentForm()
+    return render(req, 'carsapp/comment_form.html', {'form': form})
