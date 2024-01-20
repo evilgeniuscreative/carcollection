@@ -7,9 +7,6 @@ from .forms import CarForm, CommentForm
 
 # LOGIN
 
-def login_required(request):
-  return render(request, 'registration/login.html')
-
 
 # CARS
 
@@ -43,7 +40,7 @@ def car_delete(_, pk):
 
 
 # COMMENTS 
-
+@login_required
 def add_car_comment(request, pk):
     car = Car.objects.get(id=pk)
     if request.method == 'POST':
@@ -51,11 +48,12 @@ def add_car_comment(request, pk):
       if form.is_valid():
         new_comment = form.save(commit=False)
         new_comment.car = car
+        new_comment.user = request.user  
         new_comment.save()
         return redirect('car_detail', pk=car.pk)
     else:
       form = CommentForm()
-    return render(request, 'carsapp/car_detail.html', {'form': form})
+    return render(request, 'carsapp/car_detail.html', {'form': form, 'car':car},)
 
 # TODO: Edit comment, delete comment
 

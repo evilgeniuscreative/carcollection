@@ -5,11 +5,11 @@ class CarForm(forms.ModelForm):
 
   class Meta:
     model = Car
-    fields = ('name','make','model','year','color','trim','photo_url','description',)
+    fields = ('name','make','model','year','color','trim','photo_url','description','user')
 
 
 class CommentForm(forms.ModelForm):
   
   class Meta:
     model = Comment
-    fields = ('comment',)
+    fields = ('comment','car', 'user',)
