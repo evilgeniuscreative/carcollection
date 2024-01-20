@@ -1,4 +1,4 @@
-CREATE DATABASE vehiclesdb;
-CREATE USER collector WITH PASSWORD 'vroom';
-GRANT ALL PRIVILEGES ON DATABASE vehiclesdb TO collector;
-ALTER DATABASE vehiclesdb OWNER TO collector;
+CREATE DATABASE cardb;
+CREATE USER driver WITH PASSWORD 'vroom';
+GRANT ALL PRIVILEGES ON DATABASE cardb TO driver;
+ALTER DATABASE cardb OWNER TO driver;

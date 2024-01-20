@@ -50,10 +50,8 @@ def add_car_comment(request, pk):
         new_comment.car = car
         new_comment.user = request.user  
         new_comment.save()
-        return redirect('car_detail', pk=car.pk)
-    else:
-      form = CommentForm()
-    return render(request, 'carsapp/car_detail.html', {'form': form, 'car':car},)
+    return redirect('car_detail', pk=car.pk)
+   
 
 # TODO: Edit comment, delete comment
 
