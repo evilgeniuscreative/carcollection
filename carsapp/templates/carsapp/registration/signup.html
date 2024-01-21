@@ -1,7 +1,7 @@
-<!-- carsapp/templates/carsapp/car_form.html -->
+<!-- carsapp/templates/carsapp/registratin/car_form.html -->
 {% extends 'carsapp/base.html' %} {% block content %}
-<h2>Add a Car</h2>
-<form method="POST" class="a-form">
+<h2>Register</h2>
+<form method="POST" class="car-form">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit" class="save btn btn-default big-btn">Save</button>
 </form>

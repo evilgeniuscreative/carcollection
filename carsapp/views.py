@@ -1,14 +1,67 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import authenticate, login, logout, user_logged_in, user_logged_out, user_login_failed
 from .models import Car, Comment
 from .forms import CarForm, CommentForm
 # Create your views here.
 
+#LOGIN / AUTH
 
-# LOGIN
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+                        
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('user')
+            password = form.cleaned_data.get('pwd')
+            user = authenticate(username=user, password=pwd)
+            login(request, user)
+            return redirect('/')
+        else:
+            return render(request, 'signup.html', {'form': form})
+        
 
+def signin(request):
+    if request.user.is_authenticated:
+        return render(request, 'cars_list.html')
+    if request.method == 'POST':
+      username = request.POST['user']
+      password = request.POST['pass']
+      user = authenticate(request, username=username, password=password)
+      if user is not None:
+        login(request, user)
+        return redirect('/')
+      else:
+            form = AuthenticationForm(request.POST)
+            return render(request, 'signin.html', {'form': form})
+      # else:
+      #   form = AuthenticationForm()
+      #   return render(request, 'signin.html', {'form': form})
+
+
+def signout(request):
+   logout(request)
+   return redirect('car_list')
 
 # CARS
+
+@login_required
+def car_add(request):
+  if request.method == "POST":
+    form = CarForm(request.POST)
+    if form.is_valid():
+      car = form.save(commit=False)
+      car.user = request.user
+      car = form.save()
+      return redirect('car_detail',pk=car.pk)
+  else:
+      form = CarForm()
+
+  return render(request, 'carsapp/car_form.html', {'form': form})
 
 def car_list(request):
   cars = Car.objects.all()
@@ -20,6 +73,7 @@ def car_detail(request, pk):
   form = CommentForm()
   return render(request, 'carsapp/car_detail.html', {'car': car, 'comments': comments, 'form': form})
 
+@login_required
 def car_edit(request, pk):
     car =  Car.objects.get(id=pk)
 
@@ -33,6 +87,7 @@ def car_edit(request, pk):
 
     return render(request, 'carsapp/car_form.html', {'form': form})
 
+@login_required
 def car_delete(_, pk):
     car = Car.objects.get(id=pk)
     car.delete()
@@ -69,14 +124,4 @@ def comment_list(request):
   comments = Comment.objects.all()
   return render(request, 'carsapp/comments_list.html',{'comments':comments})
 
-def car_add(request):
-  if request.method == "POST":
-    form = CarForm(request.POST)
-    if form.is_valid():
-      car = form.save()
-      return redirect('car_detail',pk=car.pk)
-  else:
-      form = CarForm()
-
-  return render(request, 'carsapp/car_form.html', {'form': form})
 

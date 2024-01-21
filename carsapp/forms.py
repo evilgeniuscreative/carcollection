@@ -1,5 +1,20 @@
 from django import forms
-from .models import Car, Comment
+from .models import Car, Comment, User, Profile
+
+
+class UserCreationForm(forms.ModelForm):
+  
+    class Meta:
+      model = User
+      fields = ('username','password',)
+
+
+class AuthenticationForm(forms.ModelForm):
+  
+    class Meta:
+      model = User
+      fields = ('username','password',)
+
 
 class CarForm(forms.ModelForm):
 
