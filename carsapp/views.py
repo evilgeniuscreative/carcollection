@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+import os
+from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout, user_logged_in, user_logged_out, user_login_failed
 from .models import Car, Comment
@@ -8,44 +10,45 @@ from .forms import CarForm, CommentForm
 
 #LOGIN / AUTH
 
-def signup(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-                        
+def signin(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('user')
-            password = form.cleaned_data.get('pwd')
-            user = authenticate(username=user, password=pwd)
-            login(request, user)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username = username, password = password)
+        if user is not None:
+            form = login(request, user)
+            messages.success(request, f' welcome {username} !!')
             return redirect('/')
         else:
-            return render(request, 'signup.html', {'form': form})
-        
-
-def signin(request):
-    if request.user.is_authenticated:
-        return render(request, 'cars_list.html')
-    if request.method == 'POST':
-      username = request.POST['user']
-      password = request.POST['pass']
-      user = authenticate(request, username=username, password=password)
-      if user is not None:
-        login(request, user)
-        return redirect('/')
-      else:
-            form = AuthenticationForm(request.POST)
-            return render(request, 'signin.html', {'form': form})
-      # else:
-      #   form = AuthenticationForm()
-      #   return render(request, 'signin.html', {'form': form})
-
+            messages.info(request, f'account done not exit plz sign in')
+    form = AuthenticationForm()
+    return render(request, 'carsapp/registration/signin.html', {'form':form, 'title':'log in'})
 
 def signout(request):
    logout(request)
    return redirect('car_list')
+
+# def signup(request):
+#   if request.user.is_authenticated:
+#     print('user is authenticated')
+#     return redirect('/')
+#   if request.method == 'POST':
+#     print(os.path.join("request",request.POST))
+#     form = UserCreationForm(request.POST)
+#     if form.is_valid():
+#       print('form is valid')
+#       form.save()
+#       username = form.cleaned_data.get('username')
+#       password = form.cleaned_data.get('password')
+#       user = authenticate(username=user, password=password)
+#       login(request, user)
+#       return redirect('/')
+#     else:
+#       print('form is not valid')
+#       return render(request, 'signup.html', {'form': form})
+#   else:
+#     print('request is not post')
+#     return render(request, 'signup.html', {'form': form}) 
 
 # CARS
 

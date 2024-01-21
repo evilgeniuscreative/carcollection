@@ -222,16 +222,17 @@ nav a:hover {
   font-weight: bold;
 }
 
-.car-form {
+.standard-form {
+  display: block;
   margin: 10px auto;
   width: 300px;
 }
-.a-form label {
+.standard-form label {
   display: block;
   margin-bottom: 5px;
 }
-.car-form input,
-.car-form textarea {
+.standard-form input,
+.standard-form textarea {
   border-radius: 5px;
   border: 1px solid #eee;
   font-size: 16px;
