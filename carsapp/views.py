@@ -4,7 +4,7 @@ import os
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout, user_logged_in, user_logged_out, user_login_failed
-from .models import Car, Comment
+from .models import Car, Comment, Profile
 from .forms import CarForm, CommentForm
 # Create your views here.
 
@@ -14,6 +14,9 @@ def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        # location = request.POST['location']
+        # photo_url = request.POST['photo_url']
+        # about = request.POST['about']
         user = authenticate(request, username = username, password = password)
         if user is not None:
             form = login(request, user)
@@ -86,6 +89,15 @@ def car_delete(_, pk):
     car = Car.objects.get(id=pk)
     car.delete()
     return redirect('car_list')
+
+
+def add_to_collection(request, pk):
+  car = Car.objects.get(id=pk)
+  print(request.user)
+  print(car)
+  profile = Profile.objects.get(user=request.user)
+  profile.collection.add(car)
+  return redirect('car_detail', pk=car.pk)
 
 
 # COMMENTS 
