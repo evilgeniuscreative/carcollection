@@ -28,3 +28,10 @@ class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
     fields = ('comment',)
+
+
+# class AddToCollectionForm(forms.ModelForm):
+
+#   class Meta:
+#     model = Favorite
+#     fields = ('car','user',)

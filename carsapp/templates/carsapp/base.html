@@ -12,11 +12,11 @@
       <a href="/">Home</a>
       <a href="add/">Add Car</a>
       {% if user.is_authenticated %}
-      <a href="cars/signout/">Sign out</a>
+      <a href="/signout/">Sign out</a>
       {% else %}
       <span>
-        <a href="cars/signin/">Login</a> or
-        <a href="cars/signup/">Sign up</a>
+        <a href="/signin/">Login</a> or
+        <a href="/signup/">Sign up</a>
       </span>
       {% endif %}
     </nav>

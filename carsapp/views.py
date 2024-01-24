@@ -17,38 +17,29 @@ def signin(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             form = login(request, user)
-            messages.success(request, f' welcome {username} !!')
-            return redirect('/')
-        else:
-            messages.info(request, f'account done not exit plz sign in')
+            return redirect('car_list')
     form = AuthenticationForm()
     return render(request, 'carsapp/registration/signin.html', {'form':form, 'title':'log in'})
+
 
 def signout(request):
    logout(request)
    return redirect('car_list')
 
-# def signup(request):
-#   if request.user.is_authenticated:
-#     print('user is authenticated')
-#     return redirect('/')
-#   if request.method == 'POST':
-#     print(os.path.join("request",request.POST))
-#     form = UserCreationForm(request.POST)
-#     if form.is_valid():
-#       print('form is valid')
-#       form.save()
-#       username = form.cleaned_data.get('username')
-#       password = form.cleaned_data.get('password')
-#       user = authenticate(username=user, password=password)
-#       login(request, user)
-#       return redirect('/')
-#     else:
-#       print('form is not valid')
-#       return render(request, 'signup.html', {'form': form})
-#   else:
-#     print('request is not post')
-#     return render(request, 'signup.html', {'form': form}) 
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            message = messages.success(request, f'account created for {username} !!')
+            return redirect('/signin/', {'message':message})
+    else:
+        form = UserCreationForm()
+    return render(request, 'carsapp/registration/signup.html', {'form': form})
+
 
 # CARS
 

@@ -14,6 +14,33 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes hoverIn {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hoverOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
 @keyframes fadeBlue {
   from {
     background-color: white;
@@ -127,6 +154,7 @@ nav a:hover {
 .detail-page .car-detail {
   border: 1px solid #eee;
   border-radius: 5px;
+  position: relative;
 }
 
 .detail-page img {
@@ -252,4 +280,29 @@ nav a:hover {
 
 .big-btn:hover {
   background-color: #bddbef;
+}
+
+.favorite {
+  background-image: url('../images/has-car-outline.svg');
+  background-size: cover;
+  display: block;
+  filter: invert(95%) sepia(26%) saturate(1420%) hue-rotate(172deg) brightness(99%) contrast(89%);
+  height: 50px;
+  opacity: 1;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 50px;
+}
+
+.favorite:hover {
+  animation: hoverOut 0;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  background-image: url('../images/has-car-outline.svg');
+  opacity: 0.5;
+}
+
+.favorite.d {
+  filter: invert(84%) sepia(61%) saturate(2551%) hue-rotate(334deg) brightness(101%) contrast(101%);
 }
