@@ -6,9 +6,13 @@
 
 <main class="detail-page">
   <h4 class="car-detail-desc detail-desc-bg">{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
-
   <figure class="car-detail">
-    <a href="/cars/{{car.pk}}/add_to_collection" class="favorite" title="Add to your collection"></a>
+    {% if in_collection %} In your collection
+    <a href="{% url 'remove_from_collection' pk=car.pk %}" class="favorite d" title="Remove from your collection"></a>
+    {% else %} Not in your collection
+    <a href="{% url 'add_to_collection' pk=car.pk %}" class="favorite" title="Add to your collection"></a>
+    {% endif %}
+
     <img src="{{ car.photo_url }}" alt="{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }}" class="car-photo" />
   </figure>
 

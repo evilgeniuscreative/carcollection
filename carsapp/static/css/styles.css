@@ -325,10 +325,9 @@ nav a:hover {
 }
 
 .favorite {
-  background-image: url('../images/has-car-outline.svg');
+  background-image: url('../images/empty.png');
   background-size: cover;
   display: block;
-  filter: invert(95%) sepia(26%) saturate(1420%) hue-rotate(172deg) brightness(99%) contrast(89%);
   height: 50px;
   opacity: 1;
   position: absolute;
@@ -341,10 +340,10 @@ nav a:hover {
   animation: hoverOut 0;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
-  background-image: url('../images/has-car-outline.svg');
-  opacity: 0.5;
+  background-image: url('../images/checked.png');
+  opacity: 1;
 }
 
 .favorite.d {
-  filter: invert(84%) sepia(61%) saturate(2551%) hue-rotate(334deg) brightness(101%) contrast(101%);
+  background-image: url('../images/added.png');
 }

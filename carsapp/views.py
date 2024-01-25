@@ -13,9 +13,6 @@ def signin(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        # location = request.POST['location']
-        # photo_url = request.POST['photo_url']
-        # about = request.POST['about']
         user = authenticate(request, username = username, password = password)
         if user is not None:
             form = login(request, user)
@@ -33,9 +30,11 @@ def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
+            Profile.objects.create(user=user, name=user.username)
+  
             message = messages.success(request, f'account created for {username} !!')
             return redirect('/signin/', {'message':message})
     else:
@@ -63,11 +62,15 @@ def car_list(request):
   cars = Car.objects.all()
   return render(request, 'carsapp/car_list.html', {'cars':cars})
 
+
 def car_detail(request, pk):
   car = Car.objects.get(id=pk)
+  profile = request.user.profile
+  in_collection = profile.collection.filter(id=pk).exists()
   comments = Comment.objects.filter(car=car)
   form = CommentForm()
-  return render(request, 'carsapp/car_detail.html', {'car': car, 'comments': comments, 'form': form})
+  return render(request, 'carsapp/car_detail.html', {'car': car, 'comments': comments, 'form': form, 'in_collection':in_collection})
+
 
 @login_required
 def car_edit(request, pk):
@@ -95,13 +98,11 @@ def car_delete(_, pk):
 def add_to_collection(request, pk):
   car = Car.objects.get(id=pk)
   profile = request.user.profile
-  # profile.collection.add(car)
-  # return redirect('car_detail', pk=car.pk)
-  # car =  Car.objects.get(id=pk)
   if request.method == 'POST':
     form = AddCarToCollectionForm(request.POST, instance=car)
     if form.is_valid():
       car = form.save()
+      profile.collection.add(car)
       return redirect('car_detail', pk=car.pk)
   else:
     form = AddCarToCollectionForm(instance=car)
@@ -109,14 +110,21 @@ def add_to_collection(request, pk):
   return render(request, 'carsapp/my_collection_add.html', {'form': form})
 
 
-
-
-
 @login_required
 def list_my_collection(request):
   profile = request.user.profile
   cars = profile.collection.all()
   return render(request, 'carsapp/my_collection_list.html', {'cars':cars})
+
+
+@login_required
+def remove_from_collection(request, pk):
+  car = Car.objects.get(id=pk)
+  profile = request.user.profile
+  profile.collection.remove(car)
+  return render(request, 'carsapp/my_collection_list.html', {'car':car})
+
+
 
 
 

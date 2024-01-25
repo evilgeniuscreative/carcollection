@@ -12,5 +12,6 @@ urlpatterns = [
   path('signin/', views.signin, name='signin'),
   path('signup/', views.signup, name='signup'),
   path('cars/<int:pk>/add_to_collection', views.add_to_collection, name='add_to_collection'),
-  path('my_collection/', views.list_my_collection, name='list_my_collection'),
+  path('cars/<int:pk>/remove_from_collection', views.remove_from_collection, name='remove_from_collection'),
+  path('cars/my_collection/', views.list_my_collection, name='list_my_collection'),
 ]
