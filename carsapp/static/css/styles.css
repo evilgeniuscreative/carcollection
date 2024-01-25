@@ -1,3 +1,8 @@
+:root {
+  --text-color: #000;
+  --link-color: #000;
+  --link-hover-color: #0e4e79;
+}
 body {
   margin: 20px 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -50,6 +55,15 @@ body {
   }
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0e4e79;
+}
+
 h1,
 h2 {
   margin: 0;
@@ -70,6 +84,32 @@ h2 {
   text-align: center;
 }
 
+h2.car-detail-title {
+  position: relative;
+}
+
+h2.car-detail-title span {
+}
+
+h2.car-detail-title a {
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: normal;
+  position: absolute;
+  text-decoration: none;
+  top: 36%;
+}
+
+h2.car-detail-title a:hover {
+  color: var(--link-hover-color);
+}
+.car-edit {
+  right: 5%;
+}
+.car-delete {
+  right: 15%;
+}
+
 nav {
   background-color: #bddbef;
   display: flex;
@@ -85,7 +125,7 @@ nav a {
 }
 
 nav a:hover {
-  color: rgb(0, 0, 238);
+  color: #bddbef;
 }
 
 .page-title {

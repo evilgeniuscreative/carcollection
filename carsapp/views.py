@@ -95,10 +95,14 @@ def add_to_collection(request, pk):
   car = Car.objects.get(id=pk)
   print(request.user)
   print(car)
-  profile = Profile.objects.get(user=request.user)
+  profile = request.user.profile
   profile.collection.add(car)
   return redirect('car_detail', pk=car.pk)
 
+def list_my_collection(request):
+  profile = request.user.profile
+  cars = profile.collection.all()
+  return render(request, 'carsapp/my_collection.html', {'cars':cars})
 
 # COMMENTS 
 @login_required

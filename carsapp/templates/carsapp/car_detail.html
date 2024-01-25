@@ -1,8 +1,9 @@
 <!-- carsapp/templates/carsapp/car_detail.html -->
 {% extends 'carsapp/base.html' %} {% block content %}
-<h2>&ldquo;{{ car.name }}&rdquo;</h2>
-<p><a href="{% url 'car_edit' pk=car.pk %}">Edit this car</a></p>
-<p><a href="{% url 'car_delete' pk=car.pk %}">Delete this car</a></p>
+<h2 class="car-detail-title">
+  <span>&ldquo;{{ car.name }}&rdquo;</span><a class="car-edit" href="{% url 'car_edit' pk=car.pk %}">Edit this car</a><a class="car-delete" href="{% url 'car_delete' pk=car.pk %}">Delete this car</a>
+</h2>
+
 <main class="detail-page">
   <h4 class="car-detail-desc detail-desc-bg">{{ car.year }} {{ car.make }} {{ car.model }} {{ car.trim }} in {{car.color}}</h4>
 
