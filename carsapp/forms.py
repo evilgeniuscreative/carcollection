@@ -22,6 +22,13 @@ class CarForm(forms.ModelForm):
     model = Car
     fields = ('name','make','model','year','color','trim','photo_url','description',)
 
+class AddCarToCollectionForm(forms.ModelForm):
+
+  class Meta:
+    model = Car
+    fields = ('name','make','model','year','color','trim','photo_url','description',)
+
+
 
 class CommentForm(forms.ModelForm):
   

@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import os
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout, user_logged_in, user_logged_out, user_login_failed
 from .models import Car, Comment, Profile
-from .forms import CarForm, CommentForm
+from .forms import CarForm, CommentForm, AddCarToCollectionForm
 # Create your views here.
 
 #LOGIN / AUTH
@@ -44,7 +43,7 @@ def signup(request):
     return render(request, 'carsapp/registration/signup.html', {'form': form})
 
 
-# CARS
+# CAR CRUD
 
 @login_required
 def car_add(request):
@@ -73,7 +72,6 @@ def car_detail(request, pk):
 @login_required
 def car_edit(request, pk):
     car =  Car.objects.get(id=pk)
-
     if request.method == 'POST':
       form = CarForm(request.POST, instance=car)
       if form.is_valid():
@@ -91,20 +89,39 @@ def car_delete(_, pk):
     return redirect('car_list')
 
 
+# COLLECTION
+
+@login_required
 def add_to_collection(request, pk):
   car = Car.objects.get(id=pk)
-  print(request.user)
-  print(car)
   profile = request.user.profile
-  profile.collection.add(car)
-  return redirect('car_detail', pk=car.pk)
+  # profile.collection.add(car)
+  # return redirect('car_detail', pk=car.pk)
+  # car =  Car.objects.get(id=pk)
+  if request.method == 'POST':
+    form = AddCarToCollectionForm(request.POST, instance=car)
+    if form.is_valid():
+      car = form.save()
+      return redirect('car_detail', pk=car.pk)
+  else:
+    form = AddCarToCollectionForm(instance=car)
 
+  return render(request, 'carsapp/my_collection_add.html', {'form': form})
+
+
+
+
+
+@login_required
 def list_my_collection(request):
   profile = request.user.profile
   cars = profile.collection.all()
-  return render(request, 'carsapp/my_collection.html', {'cars':cars})
+  return render(request, 'carsapp/my_collection_list.html', {'cars':cars})
+
+
 
 # COMMENTS 
+
 @login_required
 def add_car_comment(request, pk):
     car = Car.objects.get(id=pk)
@@ -120,13 +137,7 @@ def add_car_comment(request, pk):
 
 # TODO: Edit comment, delete comment
 
-# in car_detail
-  # check if authenticated
-  # Locate profile with request.user.profile
-  # variable for in_collection
-  # use dot notation to filter through profile collection as car.id
-  # tempate for my profile and collection
-  # else if not logged in no collection
+
 
 
 
