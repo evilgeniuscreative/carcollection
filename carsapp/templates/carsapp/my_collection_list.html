@@ -3,7 +3,9 @@
 
 <h2>My Collection</h2>
 <ul class="cars-list">
-  {% for car in cars %}
+  {{ cars.count }} cars in your collection {% if cars.count == 0 %}
+  <p>There are no cars in your collection. Add a few. Live a little.</p>
+  {% endif %} {% for car in cars %}
   <li class="car">
     <a href="{% url 'car_detail' pk=car.pk %}" class="car-link" style="background-image:url('{{ car.photo_url }}')" title="Click for detail"> </a>
     <p><strong>{{ car.name}}</strong>, {{ car.year }} {{ car.make }} {{ car.model }}</p>

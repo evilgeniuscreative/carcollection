@@ -2,7 +2,44 @@
   --text-color: #000;
   --link-color: #000;
   --link-hover-color: #0e4e79;
+  --light-blue: #bddbef;
 }
+
+.arrow_box {
+  background: #bddbef;
+  border-radius: 5px;
+  border: 1px solid #879dab;
+  display: block;
+  max-width: 280px;
+  padding: 12px 10px 12px 20px;
+  position: relative;
+  text-wrap: wrap;
+}
+.arrow_box:after,
+.arrow_box:before {
+  border: solid transparent;
+  content: '';
+  height: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 0;
+}
+
+.arrow_box:after {
+  border-color: rgba(189, 219, 239, 0);
+  border-right-color: #bddbef;
+  border-width: 15px;
+  margin-top: -15px;
+}
+.arrow_box:before {
+  border-color: rgba(135, 157, 171, 0);
+  border-right-color: #879dab;
+  border-width: 16px;
+  margin-top: -16px;
+}
+
 body {
   margin: 20px 50px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -199,6 +236,10 @@ nav a:hover {
   position: relative;
 }
 
+figure.car-detail {
+  position: relative;
+}
+
 .detail-page img {
   border-radius: 5px;
   height: auto;
@@ -324,6 +365,14 @@ nav a:hover {
   background-color: #bddbef;
 }
 
+.tooltip {
+  position: absolute;
+  top: 2px;
+  right: -315px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
 .favorite {
   background-image: url('../images/empty.png');
   background-size: cover;
@@ -339,11 +388,16 @@ nav a:hover {
 .favorite:hover {
   animation: hoverOut 0;
   animation-duration: 0.5s;
-  animation-iteration-count: 1;
+  animation-iteration-count: 2;
   background-image: url('../images/checked.png');
   opacity: 1;
 }
 
 .favorite.d {
   background-image: url('../images/added.png');
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
