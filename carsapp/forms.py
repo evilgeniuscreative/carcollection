@@ -27,6 +27,12 @@ class AddCarToCollectionForm(forms.ModelForm):
   class Meta:
     model = Car
     fields = ('name','make','model','year','color','trim','photo_url','description',)
+  # def save(self, commit=True):
+  #   instance = super().save(commit=False)
+  #   instance.pk = None
+  #   instance.user = self.user
+  #   instance.save()
+  #   return instance
 
 
 
