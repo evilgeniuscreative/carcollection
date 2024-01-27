@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'carsproj.wsgi.application'
 
 DATABASES = { 'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dff45ttb3qk22q',
+        'NAME': 'cardb',
       }
 }
 
