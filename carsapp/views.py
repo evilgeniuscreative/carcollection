@@ -101,6 +101,7 @@ def add_to_collection(request, pk):
   if request.method == 'POST':
     form = AddCarToCollectionForm(request.POST, instance=car)
     if form.is_valid():
+      # TODO need to remove existing comments from this clone
       car = form.save()
       profile.collection.add(car)
       return redirect('car_detail', pk=car.pk)
