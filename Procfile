@@ -1,1 +1,1 @@
-Wweb: gunicorn = carsproj.wsgi
+web: gunicorn = carsproj.wsgi
