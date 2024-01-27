@@ -1,1 +1,1 @@
-WSGI_APPLICATION = 'catcollector.wsgi.application'
+WSGI_APPLICATION = carsproj.wsgi
