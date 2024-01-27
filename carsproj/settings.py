@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
+
+import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -73,16 +78,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'carsproj.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = { 'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cardb',
-      }
+DATABASES = {   
+  'default': dj_database_url.config(conn_max_age=600)
 }
 
 
@@ -129,6 +131,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure Django App for Heroku.
+
+
+WSGI_APPLICATION = 'carsproj.wsgi.application'
 
 import django_heroku
 django_heroku.settings(locals())
