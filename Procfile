@@ -1,1 +1,1 @@
-web: gunicorn carsapp.wsgi
+WSGI_APPLICATION = 'catcollector.wsgi.application'
