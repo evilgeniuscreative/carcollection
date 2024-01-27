@@ -42,7 +42,7 @@
 
     <ul class="comments-list">
       {% for c in comments.all %}
-      <li>{{ c.comment }}</li>
+      <li>{{ c.comment }} <a class="remove-comment" href="/comment/remove/{{ c.id }}">[ remove ]</a></li>
       {% endfor %}
     </ul>
   </section>

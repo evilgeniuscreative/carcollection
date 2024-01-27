@@ -401,3 +401,10 @@ figure.car-detail {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+
+.remove-comment {
+  float: right;
+  font-size: 10px;
+  padding-right: 0;
+  padding-top: 15px;
+}

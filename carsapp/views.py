@@ -147,11 +147,13 @@ def add_car_comment(request, pk):
 # TODO: Edit comment, delete comment
 
 
-
-
-
 def comment_list(request):
   comments = Comment.objects.all()
   return render(request, 'carsapp/comments_list.html',{'comments':comments})
 
 
+@login_required
+def delete_comment(request, pk):
+  comment = Comment.objects.get(id=pk)
+  comment.delete()
+  return redirect('car_detail', pk=comment.car.pk)
