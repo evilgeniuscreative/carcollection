@@ -1,1 +1,1 @@
-WSGI_APPLICATION = carsproj.wsgi
+Wweb: gunicorn = carsproj.wsgi
